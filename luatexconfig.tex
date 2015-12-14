@@ -6,7 +6,7 @@
 \catcode`\%=12\relax
 \directlua{
   local line
-  for line in io.lines("pdftexconfig.dat") do
+  for line in io.lines(kpse.lookup("pdftexconfig.dat")) do
     if not string.match(line, "^%%") then
       local key, value = string.match(line, "^(%w+)%s*%=%s*(.*)$")
         if key then
