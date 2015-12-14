@@ -29,7 +29,9 @@
       \expandafter\global\csname pdf#1\endcsname = #2
       \expandafter\global\let\csname pdf#1\endcsname\undefined
     }%
-    \directlua{tex.pdfoutput = \ifx\dvimode\undefined 1\else 0\fi}%
+    \directlua{tex.enableprimitives("", {"pdfoutput})}%
+    \global\pdfoutput = \ifx\dvimode\undefined 1\else 0\fi}%
+    \global\let\pdfoutput\undefined
   \else
     \directlua{
       tex.enableprimitives("", {"pageheight", "pagewidth", "outputmode"})
@@ -62,7 +64,6 @@
 \global\let\pageheight\undefined
 \global\let\pagewidth\undefined
 \global\let\pdfvariable\undefined
-\global\let\outputmode\undefined
 \global\let\unless\undefined
 
 \global\let\dvimode\undefined
