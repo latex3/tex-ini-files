@@ -1,32 +1,68 @@
-% Allow accees to \directlua but without a group (as settings
-% will not otherwise work)
-\catcode`\{=1 %
-\catcode`\}=2 %
-% Makes the Lua patterns a little easier to write
-\catcode`\%=12\relax
-\directlua{
-  local line
-  for line in io.lines(kpse.lookup("pdftexconfig.dat")) do
-    if not string.match(line, "^%%") then
-      local key, value = string.match(line, "^(%w+)%s*%=%s*(.*)$")
-        if key then
-          if pdf["set" .. key] then
-            pdf["set" .. key](value)
-          else
-            tex["pdf" .. key] = value
-          end
-        end
-    end
-  end
-}
-\catcode`\%=14\relax
+% Parse the common pdfTeX/LuaTeX settings in LuaTeX
+% Ideally this would be done in Lua but there are some LuaTeX versions
+% (v0.85-v0.86) where there is no Lua interface available: thus it is more
+% convenient to do everything from TeX.
 
-% Set up output mode correctly and tidy up
-\directlua{
-  local pdfoutput = pdf.setoutputmode or function(n) tex.pdfoutput = n end
-  pdfoutput(\ifx\dvimode\undefined 1\else 0\fi)
-}
-\let\dvimode\undefined
-% Put category codes back to normal
-\catcode`\{=12 %
-\catcode`\}=12 %
+\begingroup
+  \catcode`\{=1 %
+  \catcode`\}=2 %
+  \catcode`\#=6 %
+  % Enable one marker primitive and one for the looping
+  \directlua{
+    tex.enableprimitives("", {"pdfvariable", "unless"})
+  }
+  % From plain
+  \def\loop#1\repeat{\def\body{#1}\iterate}%
+  \def\iterate{%
+    \body
+      \let\next\iterate
+    \else
+      \let\next\relax
+    \fi
+    \next
+  }%
+  \let\repeat\fi
+  % The format of the data lines themsevles is simple
+  \ifx\pdfvariable\undefined
+    \def\parse#1 = #2\relax{%
+      \directlua{tex.enableprimitives("", {"pdf#1})}%
+      \expandafter\global\csname pdf#1\endcsname = #2
+      \expandafter\global\let\csname pdf#1\endcsname\undefined
+    }%
+    \directlua{tex.pdfoutput = \ifx\dvimode\undefined 1\else 0\fi}%
+  \else
+    \directlua{
+      tex.enableprimitives("", {"pageheight", "pagewidth", "outputmode"})
+    }
+    \global\outputmode = \ifx\dvimode\undefined 1\else 0\fi\relax
+    \global\let\outputmode\undefined
+    \def\parse#1 = #2\relax{%
+      \expandafter\ifx\csname #1\endcsname\relax
+        \global\pdfvariable #1 = #2%
+      \else
+        \expandafter\global\csname #1\endcsname = #2%
+      \fi
+    }%
+  \fi
+  \def\storedpar{\par}%
+  % Read the raw data
+  \openin0=pdftexconfig.dat %
+  \loop\unless\ifeof0 %
+    \read0 to \line
+    \unless\ifx\line\storedpar
+      \if\relax\line\relax
+      \else
+        \expandafter\parse\line\relax
+      \fi
+    \fi
+  \repeat
+\endgroup
+
+% Tidy up primitives and DVI mode marker
+\global\let\pageheight\undefined
+\global\let\pagewidth\undefined
+\global\let\pdfvariable\undefined
+\global\let\outputmode\undefined
+\global\let\unless\undefined
+
+\global\let\dvimode\undefined
