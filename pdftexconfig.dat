@@ -3,7 +3,7 @@
 % primitives
 
 % Paper size: dimensions given in absolute terms
-pageheight       = 210 true mm
+pageheight       = 297 true mm
 pagewidth        = 210 true mm
 
 % Enable PDF 1.5 output and thus more compression (enabled since TeX Live 2010)
