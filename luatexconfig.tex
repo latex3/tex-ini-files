@@ -26,7 +26,7 @@
   local pdfoutput = pdf.setoutputmode or function(n) tex.pdfoutput = n end
   pdfoutput(\ifx\dvimode\undefined 1\else 0\fi)
 }
-\let\dvilualatex\undefined
+\let\dvimode\undefined
 % Put category codes back to normal
 \catcode`\{=12 %
 \catcode`\}=12 %
