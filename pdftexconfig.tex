@@ -1,0 +1,33 @@
+% Load shared PDF settings
+% This needs a bit of work to read the file line-by-line
+\begingroup
+  \catcode`\{=1 %
+  \catcode`\}=2 %
+  \catcode`\#=6 %
+  % From plain
+  \def\loop#1\repeat{\def\body{#1}\iterate}%
+  \def\iterate{%
+    \body
+      \let\next\iterate
+    \else
+      \let\next\relax
+    \fi
+    \next
+  }%
+  \let\repeat\fi
+  % The format of the data lines themsevles is simple
+  \def\parse#1 = #2\relax{\expandafter\global\csname pdf#1\endcsname = #2}%
+  \def\storedpar{\par}%
+  % Read the raw data
+  \openin0=pdftexconfig.dat %
+  \loop\unless\ifeof0 %
+    \read0 to \line
+    \unless\ifx\line\storedpar
+      \if\relax\line\relax
+      \else
+        \expandafter\parse\line\relax
+      \fi
+    \fi
+  \repeat
+\endgroup
+\endinput
