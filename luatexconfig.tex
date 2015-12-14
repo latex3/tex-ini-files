@@ -1,0 +1,32 @@
+% Allow accees to \directlua but without a group (as settings
+% will not otherwise work)
+\catcode`\{=1 %
+\catcode`\}=2 %
+% Makes the Lua patterns a little easier to write
+\catcode`\%=12\relax
+\directlua{
+  local line
+  for line in io.lines("pdftexconfig.dat") do
+    if not string.match(line, "^%%") then
+      local key, value = string.match(line, "^(%w+)%s*%=%s*(.*)$")
+        if key then
+          if pdf["set" .. key] then
+            pdf["set" .. key](value)
+          else
+            tex["pdf" .. key] = value
+          end
+        end
+    end
+  end
+}
+\catcode`\%=14\relax
+
+% Set up output mode correctly and tidy up
+\directlua{
+  local pdfoutput = pdf.setoutputmode or function(n) tex.pdfoutput = n end
+  pdfoutput(\ifx\dvimode\undefined 1\else 0\fi)
+}
+\let\dvilualatex\undefined
+% Put category codes back to normal
+\catcode`\{=12 %
+\catcode`\}=12 %
