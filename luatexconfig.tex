@@ -25,12 +25,12 @@
   % The format of the data lines themsevles is simple
   \ifx\pdfvariable\undefined
     \def\parse#1 = #2\relax{%
-      \directlua{tex.enableprimitives("", {"pdf#1})}%
+      \directlua{tex.enableprimitives("", {"pdf#1"})}%
       \expandafter\global\csname pdf#1\endcsname = #2
-      \expandafter\global\let\csname pdf#1\endcsname\undefined
+      \expandafter\global\expandafter\let\csname pdf#1\endcsname\undefined
     }%
-    \directlua{tex.enableprimitives("", {"pdfoutput})}%
-    \global\pdfoutput = \ifx\dvimode\undefined 1\else 0\fi}%
+    \directlua{tex.enableprimitives("", {"pdfoutput"})}%
+    \global\pdfoutput = \ifx\dvimode\undefined 1\else 0\fi
     \global\let\pdfoutput\undefined
   \else
     \directlua{
