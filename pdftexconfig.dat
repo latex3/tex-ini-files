@@ -10,7 +10,7 @@ pagewidth        = 210 true mm
 minorversion     = 5
 objcompresslevel = 2
 
-% Low-level settings unlikely every to need to change
+% Low-level settings unlikely ever to need to change
 compresslevel    = 9
 decimaldigits    = 3
 pkresolution     = 600
