@@ -12,7 +12,7 @@ objcompresslevel = 2
 
 % Low-level settings unlikely ever to need to change
 compresslevel    = 9
-decimaldigits    = 3
+decimaldigits    = 4
 pkresolution     = 600
 horigin          = 1 true in
 vorigin          = 1 true in
