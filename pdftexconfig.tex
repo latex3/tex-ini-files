@@ -31,5 +31,8 @@
     \fi
   \repeat
 \endgroup
-\global\pdfoutput=1 %
+
+\global\pdfoutput = \ifx\dvimode\undefined 1\else 0\fi\relax
+\global\let\dvimode\undefined
+
 \endinput

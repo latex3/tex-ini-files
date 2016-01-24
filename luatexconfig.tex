@@ -27,7 +27,7 @@
       \expandafter\global\expandafter\let\csname pdf#1\endcsname\undefined
     }%
     \directlua{tex.enableprimitives("", {"pdfoutput"})}%
-    \global\pdfoutput = \ifx\dvimode\undefined 1\else 0\fi
+    \global\pdfoutput = \ifx\dvimode\undefined 1\else 0\fi\relax
     \global\let\pdfoutput\undefined
   \else
     \directlua{
