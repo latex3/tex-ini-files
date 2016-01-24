@@ -1,12 +1,10 @@
 % Shared configuration for pdfTeX/LuaTeX low-level settings
-% All of these settings are named based on the pdfTeX 1.40
-% primitives
 
 % Paper size: dimensions given in absolute terms
 pageheight       = 297 true mm
 pagewidth        = 210 true mm
 
-% Enable PDF 1.5 output and thus more compression (enabled since TeX Live 2010)
+% Enable PDF 1.5 output and thus more compression
 minorversion     = 5
 objcompresslevel = 2
 

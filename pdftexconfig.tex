@@ -1,10 +1,11 @@
-% Load shared PDF settings
+% Load shared (PDF) settings in pdfTeX
+
 % This needs a bit of work to read the file line-by-line
 \begingroup
   \catcode`\{=1 %
   \catcode`\}=2 %
   \catcode`\#=6 %
-  % From plain
+  % From plain.tex
   \def\loop#1\repeat{\def\body{#1}\iterate}%
   \def\iterate{%
     \body

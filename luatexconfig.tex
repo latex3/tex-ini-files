@@ -1,7 +1,4 @@
-% Parse the common pdfTeX/LuaTeX settings in LuaTeX
-% Ideally this would be done in Lua but there are some LuaTeX versions
-% (v0.85-v0.86) where there is no Lua interface available: thus it is more
-% convenient to do everything from TeX.
+% Load shared (PDF) settings in LuaTeX
 
 \begingroup
   \catcode`\{=1 %
@@ -11,7 +8,7 @@
   \directlua{
     tex.enableprimitives("", {"pdfvariable", "unless"})
   }
-  % From plain
+  % From plain.tex
   \def\loop#1\repeat{\def\body{#1}\iterate}%
   \def\iterate{%
     \body
