@@ -17,7 +17,7 @@
   }%
   \let\repeat\fi
   % The format of the data lines themsevles is simple
-  \def\parse#1 = #2\relax{\expandafter\global\csname pdf#1\endcsname = #2}%
+  \def\parse#1 = #2\relax{\expandafter\global\csname pdf#1\endcsname = #2 }%
   \def\storedpar{\par}%
   % Read the raw data
   \openin0=pdftexconfig.dat %
