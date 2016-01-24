@@ -7,7 +7,7 @@
   % Enable one marker primitive and one for the looping
   \directlua{
     tex.enableprimitives("", {"pdfvariable", "unless"})
-  }
+  }%
   % From plain.tex
   \def\loop#1\repeat{\def\body{#1}\iterate}%
   \def\iterate{%
@@ -23,7 +23,7 @@
   \ifx\pdfvariable\undefined
     \def\parse#1 = #2\relax{%
       \directlua{tex.enableprimitives("", {"pdf#1"})}%
-      \expandafter\global\csname pdf#1\endcsname = #2
+      \expandafter\global\csname pdf#1\endcsname = #2 %
       \expandafter\global\expandafter\let\csname pdf#1\endcsname\undefined
     }%
     \directlua{tex.enableprimitives("", {"pdfoutput"})}%
@@ -32,14 +32,14 @@
   \else
     \directlua{
       tex.enableprimitives("", {"pageheight", "pagewidth", "outputmode"})
-    }
+    }%
     \global\outputmode = \ifx\dvimode\undefined 1\else 0\fi\relax
     \global\let\outputmode\undefined
     \def\parse#1 = #2\relax{%
       \expandafter\ifx\csname #1\endcsname\relax
-        \global\pdfvariable #1 = #2%
+        \global\pdfvariable #1 = #2 %
       \else
-        \expandafter\global\csname #1\endcsname = #2%
+        \expandafter\global\csname #1\endcsname = #2 %
       \fi
     }%
   \fi
