@@ -26,6 +26,15 @@ If this is defined, the loaders will set the format to produce
 DVI file, and otherwise will select direct PDF output. The loader
 will then undefine `\dvimode`.
 
+## History
+
+The use of `.ini` files for building formats has developed over
+some time. The initial versions of the files collected here were
+taken from TeX Live 2015, and thus carry forward long-standing
+behaviours from this system. Initial modifications were made
+to allow for significant changes in LuaTeX primitive support
+between TeX Live 2015 and TeX Live 2016.
+
 ## Legal
 
 The files provided here were originally written by various
