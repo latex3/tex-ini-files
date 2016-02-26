@@ -19,7 +19,7 @@
     \next
   }%
   \let\repeat\fi
-  % The format of the data lines themsevles is simple
+  % The format of the data lines themselves is simple
   \ifx\pdfvariable\undefined
     \def\parse#1 = #2\relax{%
       \directlua{tex.enableprimitives("", {"pdf#1"})}%
