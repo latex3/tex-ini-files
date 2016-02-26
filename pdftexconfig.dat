@@ -1,3 +1,5 @@
+% tex-ini-files 2016-02-26: pdftexconfig.dat
+
 % Shared configuration for pdfTeX/LuaTeX low-level settings
 
 % Paper size: dimensions given in absolute terms
