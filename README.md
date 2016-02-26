@@ -35,6 +35,12 @@ behaviours from this system. Initial modifications were made
 to allow for significant changes in LuaTeX primitive support
 between TeX Live 2015 and TeX Live 2016.
 
+Major changes:
+- 2016-02-26 First version of bundle
+
+A full history of this bundle is available from
+https://github.com/josephwright/tex-ini-files
+
 ## Legal
 
 The files provided here were originally written by various
