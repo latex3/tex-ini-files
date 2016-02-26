@@ -35,6 +35,14 @@ behaviours from this system. Initial modifications were made
 to allow for significant changes in LuaTeX primitive support
 between TeX Live 2015 and TeX Live 2016.
 
+The files provided here are designed to work with other support
+files and engines available from late 2015 onward, in particular:
+- pdfTeX v1.40+
+- LuaTeX v0.80+
+- XeTeX  v0.99992+
+- LaTeX2e 2015-01-01 onward
+- unicode-data v1.0+
+
 Major changes:
 - 2016-02-26 First version of bundle
 
