@@ -44,7 +44,7 @@ files and engines available from late 2015 onward, in particular:
 - unicode-data v1.0+
 
 Major changes:
-- 2016-02-26 First version of bundle
+- 2016-02-27 First version of bundle
 
 A full history of this bundle is available from
 https://github.com/josephwright/tex-ini-files
