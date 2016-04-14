@@ -61,10 +61,9 @@
       \expandafter\do
     \fi
   }%
-  \expandafter\do\list\relax
+  \expandafter\do\list{output}{pageheight}{pagewidth}{variable}\relax
   \global\let\outputmode\undefined
   \global\let\pageheight\undefined
   \global\let\pagewidth\undefined
-  \global\let\pdfvariable\undefined
   \global\let\dvimode\undefined
 \endgroup
