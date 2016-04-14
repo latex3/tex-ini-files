@@ -45,6 +45,7 @@ files and engines available from late 2015 onward, in particular:
 
 Major changes:
 - 2016-02-27 First version of bundle
+- 2016-04-14 Do not assume e-TeX availability in pdftexconfig.tex
 
 A full history of this bundle is available from
 https://github.com/josephwright/tex-ini-files
