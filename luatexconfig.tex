@@ -21,9 +21,9 @@
       \expandafter\do
     \fi
   }%
-  \expandafter\do\list {pageheight}{pagewidth}{variable}\relax
+  \expandafter\do\list{output}{pageheight}{pagewidth}{variable}\relax
   \directlua{tex.enableprimitives("",
-    {"pageheight", "pdfoutput", "pagewidth", "outputmode"})}%
+    {"pageheight", "pagewidth", "outputmode"})}%
   \ifx\pdfoutput\undefined
     \let\pdfoutput\outputmode
     \let\pdfpageheight\pageheight
