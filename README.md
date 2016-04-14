@@ -9,19 +9,18 @@ work with XeTeX and LuaTeX.
 
 ## Shared configuration
 
-The file `pdftexconfig.dat` contains common settings for pdfTeX
+The file `pdftexconfig.tex` contains common settings for pdfTeX
 and LuaTeX, most of which are concerned with direct PDF output.
-These settings are given in a key-value format and are named
-based on the pdfTeX 1.40 primitives. The values for the settings
-themselves is taken from the standard values in TeX Live 2010
-with the paper size set as A4.
+This file is designed to be loaded directly by pdfTeX and can
+be parsed by the `luatexconfig.tex` to allow the same settings
+to be used by LuaTeX directly. The format of the file
+`pdftexconfig.tex` is strictly
 
-Loading this data in pdfTeX is achieved by `pdftexconfig.tex`,
-whereas for LuaTeX the file `luatexconfig.tex` is needed. Both
-of these files will load the shared data file and assign the
-appropriate primitives.
+    <pdfTeX primitive> = <value>
 
-The loaders recognise the marker control sequence `\dvimode`.
+for all non-comment non-blank lines. 
+
+The LuaTeX loader recognise the marker control sequence `\dvimode`.
 If this is defined, the loaders will set the format to produce
 DVI file, and otherwise will select direct PDF output. The loader
 will then undefine `\dvimode`.
@@ -46,6 +45,7 @@ files and engines available from late 2015 onward, in particular:
 Major changes:
 - 2016-02-27 First version of bundle
 - 2016-04-14 Do not assume e-TeX availability in `pdftexconfig.tex`
+- 2016-04-14 New approach to loading shared pdfTeX/LuaTeX data
 
 A full history of this bundle is available from
 https://github.com/josephwright/tex-ini-files

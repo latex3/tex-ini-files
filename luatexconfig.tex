@@ -6,63 +6,53 @@
   \catcode`\{=1 %
   \catcode`\}=2 %
   \catcode`\#=6 %
-  % Enable one marker primitive and one for the looping
-  \directlua{
-    tex.enableprimitives("", {"pdfvariable", "unless"})
+  \def\list{%
+      {compresslevel}%
+      {decimaldigits}%
+      {horigin}%
+      {minorversion}%
+      {objcompresslevel}%
+      {pkresolution}%
+      {vorigin}%
   }%
-  % From plain.tex
-  \def\loop#1\repeat{\def\body{#1}\iterate}%
-  \def\iterate{%
-    \body
-      \let\next\iterate
-    \else
-      \let\next\relax
-    \fi
-    \next
-  }%
-  \let\repeat\fi
-  % The format of the data lines themselves is simple
-  \ifx\pdfvariable\undefined
-    \def\parse#1 = #2\relax{%
+  \def\do#1{%
+    \ifx\relax#1\else
       \directlua{tex.enableprimitives("", {"pdf#1"})}%
-      \expandafter\global\csname pdf#1\endcsname = #2 %
-      \expandafter\global\expandafter\let\csname pdf#1\endcsname\undefined
-    }%
-    \directlua{tex.enableprimitives("", {"pdfoutput"})}%
-    \global\pdfoutput = \ifx\dvimode\undefined 1\else 0\fi\relax
-    \global\let\pdfoutput\undefined
-  \else
-    \directlua{
-      tex.enableprimitives("", {"pageheight", "pagewidth", "outputmode"})
-    }%
-    \global\outputmode = \ifx\dvimode\undefined 1\else 0\fi\relax
-    \global\let\outputmode\undefined
-    \def\parse#1 = #2\relax{%
-      \expandafter\ifx\csname #1\endcsname\relax
-        \global\pdfvariable #1 = #2 %
-      \else
-        \expandafter\global\csname #1\endcsname = #2 %
-      \fi
-    }%
-  \fi
-  \def\storedpar{\par}%
-  % Read the raw data
-  \openin0=pdftexconfig.dat %
-  \loop\unless\ifeof0 %
-    \read0 to \line
-    \unless\ifx\line\storedpar
-      \if\relax\line\relax
-      \else
-        \expandafter\parse\line\relax
-      \fi
+      \expandafter\do
     \fi
-  \repeat
+  }%
+  \expandafter\do\list {pageheight}{pagewidth}{variable}\relax
+  \directlua{tex.enableprimitives("",
+    {"pageheight", "pdfoutput", "pagewidth", "outputmode"})}%
+  \ifx\pdfoutput\undefined
+    \let\pdfoutput\outputmode
+    \let\pdfpageheight\pageheight
+    \let\pdfpagewidth\pagewidth
+    \def\do#1{%
+      \ifx\relax#1\else
+        \expandafter\def\csname pdf#1\endcsname{\pdfvariable #1}%
+        \expandafter\do
+      \fi
+    }%
+    \expandafter\do\list\relax
+  \fi
+  \globaldefs=1 %
+  \input{pdftexconfig}%
+  \globaldefs=0 %
+  \ifx\dvimode\relax
+    \global\pdfoutput=0 %
+  \fi
+  \global\let\dvimode\undefined
+  \def\do#1{%
+    \ifx\relax#1\else
+      \global\expandafter\let\csname pdf#1\endcsname\relax
+      \expandafter\do
+    \fi
+  }%
+  \expandafter\do\list\relax
+  \global\let\outputmode\undefined
+  \global\let\pageheight\undefined
+  \global\let\pagewidth\undefined
+  \global\let\pdfvariable\undefined
+  \global\let\dvimode\undefined
 \endgroup
-
-% Tidy up primitives and DVI mode marker
-\global\let\pageheight\undefined
-\global\let\pagewidth\undefined
-\global\let\pdfvariable\undefined
-\global\let\unless\undefined
-
-\global\let\dvimode\undefined

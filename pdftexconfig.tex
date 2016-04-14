@@ -2,31 +2,20 @@
 
 % Load shared (PDF) settings in pdfTeX
 
-% This needs a bit of work to read the file line-by-line
-\begingroup
-  \catcode`\{=1 %
-  \catcode`\}=2 %
-  \catcode`\#=6 %
-  % From apnum.tex
-  \def\loop#1\repeat{\def\body{#1\relax\expandafter\body\fi}\body}%
-  \let\repeat\fi 
-  % The format of the data lines themselves is simple
-  \def\parse#1 = #2\relax{\expandafter\global\csname pdf#1\endcsname = #2 }%
-  \def\storedpar{\par}%
-  % Read the raw data
-  \openin0=pdftexconfig.dat %
-  \loop\ifeof0 \else
-    \read0 to \line
-    \ifx\line\storedpar\else
-      \if\relax\line\relax
-      \else
-        \expandafter\parse\line\relax
-      \fi
-    \fi
-  \repeat
-\endgroup
+% Enable PDF output
+\pdfoutput           = 1
 
-\global\pdfoutput = \ifx\dvimode\undefined 1\else 0\fi\relax
-\global\let\dvimode\undefined
+% Paper size: dimensions given in absolute terms
+\pdfpageheight       = 297 true mm
+\pdfpagewidth        = 210 true mm
 
-\endinput
+% Enable PDF 1.5 output and thus more compression
+\pdfminorversion     = 5
+\pdfobjcompresslevel = 2
+
+% Low-level settings unlikely ever to need to change
+\pdfcompresslevel    = 9
+\pdfdecimaldigits    = 3
+\pdfpkresolution     = 600
+\pdfhorigin          = 1 true in
+\pdfvorigin          = 1 true in
