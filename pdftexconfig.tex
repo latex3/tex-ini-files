@@ -7,25 +7,17 @@
   \catcode`\{=1 %
   \catcode`\}=2 %
   \catcode`\#=6 %
-  % From plain.tex
-  \def\loop#1\repeat{\def\body{#1}\iterate}%
-  \def\iterate{%
-    \body
-      \let\next\iterate
-    \else
-      \let\next\relax
-    \fi
-    \next
-  }%
-  \let\repeat\fi
+  % From apnum.tex
+  \def\loop#1\repeat{\def\body{#1\relax\expandafter\body\fi}\body}%
+  \let\repeat\fi 
   % The format of the data lines themselves is simple
   \def\parse#1 = #2\relax{\expandafter\global\csname pdf#1\endcsname = #2 }%
   \def\storedpar{\par}%
   % Read the raw data
   \openin0=pdftexconfig.dat %
-  \loop\unless\ifeof0 %
+  \loop\ifeof0 \else
     \read0 to \line
-    \unless\ifx\line\storedpar
+    \ifx\line\storedpar\else
       \if\relax\line\relax
       \else
         \expandafter\parse\line\relax
