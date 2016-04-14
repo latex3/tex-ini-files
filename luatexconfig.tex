@@ -25,12 +25,12 @@
   \directlua{tex.enableprimitives("",
     {"pageheight", "pagewidth", "outputmode"})}%
   \ifx\pdfoutput\undefined
-    \let\pdfoutput\outputmode
-    \let\pdfpageheight\pageheight
-    \let\pdfpagewidth\pagewidth
+    \global\let\pdfoutput\outputmode
+    \global\let\pdfpageheight\pageheight
+    \global\let\pdfpagewidth\pagewidth
     \def\do#1{%
       \ifx\relax#1\else
-        \expandafter\def\csname pdf#1\endcsname{\pdfvariable #1}%
+        \expandafter\xdef\csname pdf#1\endcsname{\pdfvariable #1}%
         \expandafter\do
       \fi
     }%
@@ -45,7 +45,7 @@
   \global\let\dvimode\undefined
   \def\do#1{%
     \ifx\relax#1\else
-      \global\expandafter\let\csname pdf#1\endcsname\relax
+      \global\expandafter\let\csname pdf#1\endcsname\undefined
       \expandafter\do
     \fi
   }%
