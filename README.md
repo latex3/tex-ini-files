@@ -45,7 +45,7 @@ files and engines available from late 2015 onward, in particular:
 Major changes:
 - 2016-02-27 First version of bundle
 - 2016-04-14 Do not assume e-TeX availability in `pdftexconfig.tex`
-- 2016-04-14 New approach to loading shared pdfTeX/LuaTeX data
+- 2016-04-15 New approach to loading shared pdfTeX/LuaTeX data
 
 A full history of this bundle is available from
 https://github.com/josephwright/tex-ini-files
