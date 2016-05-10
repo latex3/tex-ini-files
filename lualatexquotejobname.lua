@@ -1,6 +1,5 @@
 -- tex-ini-files 2016-05-10: lualatexquotejobname.tex
 
--- $Id: lualatexquotejobname.tex 22957 2011-06-13 20:49:26Z mpg $
 -- Manuel Pegourie-Gonnard, originally written 2010. WTFPL v2.
 --
 -- Goal: see lualatexquotejobname.tex
