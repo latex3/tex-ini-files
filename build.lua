@@ -15,6 +15,9 @@ function setversion_update_line (line, date, version)
   if string.match(line, "^%% tex%-ini%-files %d%d%d%d%-%d%d%-%d%d: ") then
     line = string.gsub(line, "%d%d%d%d%-%d%d%-%d%d", date)
   end
+  if string.match(line, "^%-%- tex%-ini%-files %d%d%d%d%-%d%d%-%d%d: ") then
+    line = string.gsub(line, "%d%d%d%d%-%d%d%-%d%d", date)
+  end
   return line
 end
 
