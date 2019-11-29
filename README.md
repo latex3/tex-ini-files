@@ -48,7 +48,7 @@ Major changes:
 - 2016-04-15 New approach to loading shared pdfTeX/LuaTeX data
 
 A full history of this bundle is available from
-https://github.com/josephwright/tex-ini-files
+https://github.com/latex3/tex-ini-files
 
 ## Legal
 
