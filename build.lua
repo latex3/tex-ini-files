@@ -20,7 +20,3 @@ function setversion_update_line (line, date, version)
   end
   return line
 end
-
--- Find and run the build system
-kpse.set_program_name ("kpsewhich")
-dofile (kpse.lookup ("l3build.lua"))
