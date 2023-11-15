@@ -10,6 +10,7 @@ module  = "tex-ini-files"
 sourcefiles  = {"*.dat", "*.ini", "*.tex"}
 unpackfiles  = { }
 versionfiles = sourcefiles
+installfiles = sourcefiles
 
 function setversion_update_line (line, date, version)
   if string.match(line, "^%% tex%-ini%-files %d%d%d%d%-%d%d%-%d%d: ") then
