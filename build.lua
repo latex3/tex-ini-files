@@ -12,6 +12,14 @@ unpackfiles  = { }
 versionfiles = sourcefiles
 installfiles = sourcefiles
 
+tdsroot = "generic"
+tdslocations =
+  {
+    "tex/latex/latexconfig/*latex.ini",
+    "tex/latex/latexconfig/lualatex*.*",
+  }
+  packtdszip = true
+
 function setversion_update_line (line, date, version)
   if string.match(line, "^%% tex%-ini%-files %d%d%d%d%-%d%d%-%d%d: ") then
     line = string.gsub(line, "%d%d%d%d%-%d%d%-%d%d", date)
