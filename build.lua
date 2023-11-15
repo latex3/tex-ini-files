@@ -7,7 +7,7 @@ bundle  = ""
 module  = "tex-ini-files"
 
 -- Non-standard file set up
-sourcefiles  = {"*.dat", "*.ini", "*.tex"}
+sourcefiles  = {"*.dat", "*.ini", "*.tex", "lualatexquotejobname.lua"}
 unpackfiles  = { }
 versionfiles = sourcefiles
 installfiles = sourcefiles
