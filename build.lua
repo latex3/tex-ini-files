@@ -15,10 +15,10 @@ installfiles = sourcefiles
 tdsroot = "generic"
 tdslocations =
   {
-    "tex/latex/latexconfig/*latex.ini",
-    "tex/latex/latexconfig/lualatex*.*",
+    "tex/latex/tex-ini-files/*latex.ini",
+    "tex/latex/tex-ini-files/lualatex*.*",
   }
-  packtdszip = true
+packtdszip = true
 
 function setversion_update_line (line, date, version)
   if string.match(line, "^%% tex%-ini%-files %d%d%d%d%-%d%d%-%d%d: ") then
