@@ -9,7 +9,7 @@ module  = "tex-ini-files"
 -- Non-standard file set up
 sourcefiles  = {"*.dat", "*.ini", "*.tex", "lualatexquotejobname.lua"}
 unpackfiles  = { }
-versionfiles = sourcefiles
+tagfiles = sourcefiles
 installfiles = sourcefiles
 
 tdsroot = "generic"
@@ -20,12 +20,7 @@ tdslocations =
   }
 packtdszip = true
 
-function setversion_update_line (line, date, version)
-  if string.match(line, "^%% tex%-ini%-files %d%d%d%d%-%d%d%-%d%d: ") then
-    line = string.gsub(line, "%d%d%d%d%-%d%d%-%d%d", date)
-  end
-  if string.match(line, "^%-%- tex%-ini%-files %d%d%d%d%-%d%d%-%d%d: ") then
-    line = string.gsub(line, "%d%d%d%d%-%d%d%-%d%d", date)
-  end
-  return line
+function update_tag(file,content,tagname)
+  return string.gsub(content,"tex%-ini%-files %d%d%d%d%-%d%d%-%d%d:",
+    "tex-ini-files " .. tagname .. ":")
 end
