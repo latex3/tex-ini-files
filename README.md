@@ -48,6 +48,7 @@ Major changes:
 - 2016-04-15 New approach to loading shared pdfTeX/LuaTeX data
 - 2023-11-15 Align setting of interaction mode across LaTeX .ini files
 - 2023-11-17 Add luatexiniconfig.tex
+- 2025-02-09 Step PDF version to 1.7
 
 A full history of this bundle is available from
 https://github.com/latex3/tex-ini-files
