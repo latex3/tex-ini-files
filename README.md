@@ -20,7 +20,7 @@ to be used by LuaTeX directly. The format of the file
 
 for all non-comment non-blank lines. 
 
-The LuaTeX loader recognise the marker control sequence `\dvimode`.
+The LuaTeX loader recognize the marker control sequence `\dvimode`.
 If this is defined, the loaders will set the format to produce
 DVI file, and otherwise will select direct PDF output. The loader
 will then undefine `\dvimode`.
@@ -30,7 +30,7 @@ will then undefine `\dvimode`.
 The use of `.ini` files for building formats has developed over
 some time. The initial versions of the files collected here were
 taken from TeX Live 2015, and thus carry forward long-standing
-behaviours from this system. Initial modifications were made
+behaviors from this system. Initial modifications were made
 to allow for significant changes in LuaTeX primitive support
 between TeX Live 2015 and TeX Live 2016.
 
