@@ -49,6 +49,7 @@ Major changes:
 - 2023-11-15 Align setting of interaction mode across LaTeX .ini files
 - 2023-11-17 Add `luatexiniconfig.tex`
 - 2025-02-09 Step PDF version to 1.7
+- 2025-03-25 Correct an lccode leak in `xetex.ini`
 
 A full history of this bundle is available from
 https://github.com/latex3/tex-ini-files
