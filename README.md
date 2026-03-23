@@ -36,6 +36,7 @@ between TeX Live 2015 and TeX Live 2016.
 
 The files provided here are designed to work with other support
 files and engines available from late 2015 onward, in particular:
+
 - pdfTeX v1.40+
 - LuaTeX v0.80+
 - XeTeX  v0.99992+
@@ -43,10 +44,11 @@ files and engines available from late 2015 onward, in particular:
 - unicode-data v1.0+
 
 Major changes:
+
 - 2016-02-27 First version of bundle
 - 2016-04-14 Do not assume e-TeX availability in `pdftexconfig.tex`
 - 2016-04-15 New approach to loading shared pdfTeX/LuaTeX data
-- 2023-11-15 Align setting of interaction mode across LaTeX .ini files
+- 2023-11-15 Align setting of interaction mode across LaTeX `.ini` files
 - 2023-11-17 Add `luatexiniconfig.tex`
 - 2025-02-09 Step PDF version to 1.7
 - 2025-03-25 Correct an lccode leak in `xetex.ini`
