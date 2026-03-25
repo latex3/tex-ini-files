@@ -1,4 +1,4 @@
--- tex-ini-files 2026-03-23: lualatexquotejobname.tex
+-- tex-ini-files 2026-03-25: lualatexquotejobname.tex
 
 -- Manuel Pegourie-Gonnard, originally written 2010. WTFPL v2.
 --
