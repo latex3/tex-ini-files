@@ -53,6 +53,7 @@ Major changes:
 - 2025-02-09 Step PDF version to 1.7
 - 2025-03-25 Correct an lccode leak in `xetex.ini`
 - 2026-03-23 Add wrapper for `callback.register`
+- 2026-03-25 Correct scope of `\everyjob` setting
 
 A full history of this bundle is available from
 https://github.com/latex3/tex-ini-files
